@@ -1,42 +1,45 @@
-let currentTime = new Date();
+function convertTimeToRotationAngle(selector, angle) {
+    let timeDiv = document.querySelector(`${selector}`);
 
-let hour = currentTime.getHours();
+    timeDiv.style.transform = `rotate(${angle}deg)`;
+}
 
-// Converting the 24 hour format to 12 hour format.
-hour = hour % 12;
+function updateTime(currentTime) {
+    let hour = currentTime.getHours();
 
-let minutes = currentTime.getMinutes();
+    // Converting the 24 hour format to 12 hour format.
+    hour = hour % 12;
 
-let seconds = currentTime.getSeconds();
+    let minutes = currentTime.getMinutes();
 
-console.log('The time info is: hour = ' + hour + ', minutes = ' + minutes + ', seconds = ' + seconds);
+    let seconds = currentTime.getSeconds();
 
-// Total degrees = 360 deg, Total hours = 12 hrs, Rotation per hour = 30 deg;
-// To Calculate the amount of rotation needed for the hour hand,
-// multiply the current time(hours) by 30 degrees
+    console.log('The time info is: hour = ' + hour + ', minutes = ' + minutes + ', seconds = ' + seconds);
 
-let hourAngle = hour * 30;
+    // Total degrees = 360 deg, Total hours = 12 hrs, Rotation per hour = 30 deg;
+    // To Calculate the amount of rotation needed for the hour hand,
+    // multiply the current time(hours) by 30 degrees
+    let hourAngle = hour * 30;
 
-// Total degrees = 360 deg, Total minutes = 60 minutes, Rotation per minute = 6 deg;
-// To Calculate the amount of rotation needed for the minute hand,
-// multiply the current time(minutes) by 6 degrees
+    // Total degrees = 360 deg, Total minutes = 60 minutes, Rotation per minute = 6 deg;
+    // To Calculate the amount of rotation needed for the minute hand,
+    // multiply the current time(minutes) by 6 degrees
 
-let minutesAngle = minutes * 6;
+    let minutesAngle = minutes * 6;
 
-// Total degrees = 360 deg, Total minutes = 60 minutes, Rotation per minute = 6 deg;
-// To Calculate the amount of rotation needed for the minute hand,
-// multiply the current time(minutes) by 6 degrees
+    // Total degrees = 360 deg, Total minutes = 60 minutes, Rotation per minute = 6 deg;
+    // To Calculate the amount of rotation needed for the minute hand,
+    // multiply the current time(minutes) by 6 degrees
 
-let secondsAngle = seconds * 6;
+    let secondsAngle = seconds * 6;
 
-let hourHandDiv = document.querySelector('.hour-hand');
+    convertTimeToRotationAngle('.hour-hand', hourAngle);
+    convertTimeToRotationAngle('.minutes-hand', minutesAngle);
+    convertTimeToRotationAngle('.seconds-hand', secondsAngle);
 
-hourHandDiv.style.transform = `rotate(${hourAngle}deg)`;
+}
 
-let minutesHandDiv = document.querySelector('.minutes-hand');
-
-minutesHandDiv.style.transform = `rotate(${minutesAngle}deg)`;
-
-let secondsHandDiv = document.querySelector('.seconds-hand');
-
-secondsHandDiv.style.transform = `rotate(${secondsAngle}deg)`;
+setInterval(function() {
+    let currentTime = new Date();
+    updateTime(currentTime)
+}, 1000);

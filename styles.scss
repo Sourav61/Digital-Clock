@@ -41,7 +41,7 @@
     background-color: var(--hour-hand-color);
     position: absolute;
     left: 50%;
-    top: calc(50% - var(--hour-hand-height) - 1px);
+    top: calc(50% - var(--hour-hand-height));
     transform: rotate(0deg);
     transform-origin: bottom;
 }
@@ -52,7 +52,7 @@
     background-color: var(--minutes-hand-color);
     position: absolute;
     left: 50%;
-    top: calc(50% - var(--minutes-hand-height) - 1px);
+    top: calc(50% - var(--minutes-hand-height));
     transform: rotate(90deg);
     transform-origin: bottom;
 }
@@ -63,7 +63,7 @@
     background-color: var(--seconds-hand-color);
     position: absolute;
     left: 50%;
-    top: calc(50% - var(--seconds-hand-height) - 1px);
+    top: calc(50% - var(--seconds-hand-height));
     transform: rotate(180deg);
     transform-origin: bottom;
 }
